@@ -1,4 +1,4 @@
-import util from "util"; // <-- breaks with "node:util"
+import util from "node:util"; // <-- only breaks with "node:util", works with "util"
 
 import { AppProps } from "next/app";
 
