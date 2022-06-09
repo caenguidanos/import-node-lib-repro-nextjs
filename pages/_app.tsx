@@ -1,8 +1,15 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import util from "util"; // <-- breaks with "node:util"
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+import { AppProps } from "next/app";
+
+if (typeof window === "undefined") {
+  console.deep = (payload: unknown, depth = 100) => {
+    console.log(util.inspect(payload, false, depth, true));
+  };
 }
 
-export default MyApp
+function MyApp({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />;
+}
+
+export default MyApp;
